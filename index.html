@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{padding-top:50px;}
+        .all_bg{
+            width:800px;height:600px;margin:0 auto;border:1px solid red;
+        }
+        #allcanvas{
+            position:relative;width:800px;height:600px;margin:0
+        }
+        #canvas1{
+            position:absolute;width:800px;height:600px;bottom:0;left:0;z-index:1;background:transparent;
+        }
+        #canvas2{
+            position:absolute;width:800px;height:600px;bottom:0;left:0;z-index:0;background: rgb(52, 150, 216);
+        }
+    </style>
+</head>
+<body>
+    <div class="all_bg">
+        <div id="allcanvas">
+            <canvas id="canvas1" width="800" height="600">大鱼小鱼分数</canvas>
+            <canvas id="canvas2" width="800" height="600">背景海葵食物</canvas>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
