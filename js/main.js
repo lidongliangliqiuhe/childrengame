@@ -18,7 +18,11 @@
     //3.4创建两个全局变量 上一贞 执行时间 两针时间差
     var lastTime=0;
     var deltaTime=0;
-
+    //3。5创建全局变量 保存大鱼对象
+    var mom=null;
+    //3.6创建两个全局变量保存鼠标位置
+    var mx=0;
+    var my=0;
 
 //4创建入口函数         game
 function game(){
@@ -46,6 +50,11 @@ function init(){
     //5.3创建食物对象并且调用初始化方法
     fruit=new fruitObj();
     fruit.init();
+    //5.4闯进大鱼对象并且调用初始化方法
+    mom=new momObj();
+    mom.init();
+    //5.5 为画布1绑定鼠标移动事件 
+    can1.addEventListener("mousemove",onMouseMove,false)
 
 }
 //6创建绘制函数         gameloop
@@ -64,6 +73,8 @@ function gameloop(){
     ctx1.clearRect(0,0,canWidth,canHight)
     //6.3监听画布
     fruitMonitor();
+    //6.4绘制大鱼
+    mom.draw();
 
 
 
@@ -75,3 +86,12 @@ function gameloop(){
 }
 //7页面加载成功后调用    game
 document.body.onload = game;
+function onMouseMove(e){
+    if(e.offsetX || e.layerX){
+        mx = e.offsetX ==undefined ? e.layerX : e.offsetX;
+    }
+    if(e.offsetY || e.layerY){
+        my = e.offsetY ==undefined ? e.layerY : e.offsetY;
+    }
+   // console.log(mx+"|"+my)
+}
