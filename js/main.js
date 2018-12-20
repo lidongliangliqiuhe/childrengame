@@ -3,12 +3,12 @@
 //2在index.html 中加载main.js
 //3创建全局变量
     //两个画布两个画笔 画面宽高
-    var can1;//前
-    var can2;//后
-    var ctx1;
-    var ctx2;
-    var canWidth;
-    var canHight;
+var can1;//前
+var can2;//后
+var ctx1;
+var ctx2;
+var canWidth;
+var canHight;
     //3.1创建一个全局变量保存背景图片
     var bgPic = null;
     //3.2创建全局变量保存海葵对象
@@ -23,6 +23,10 @@
     //3.6创建两个全局变量保存鼠标位置
     var mx=0;
     var my=0;
+    //3.7创建全局变量保存小鱼对象
+    var baby=null;
+
+
 
 //4创建入口函数         game
 function game(){
@@ -31,7 +35,6 @@ function game(){
     deltaTime=0;
     gameloop();
 }
-
 //5创建初始化函数       init
 function init(){
     //console.log(1)
@@ -55,7 +58,9 @@ function init(){
     mom.init();
     //5.5 为画布1绑定鼠标移动事件 
     can1.addEventListener("mousemove",onMouseMove,false)
-
+    //5.6创建小鱼对象并且调用初始化方法
+    baby=new babyObj();
+    baby.init()
 }
 //6创建绘制函数         gameloop
 function gameloop(){
@@ -71,14 +76,17 @@ function gameloop(){
     drawBackground();
     //6.2.1清楚第一块画布
     ctx1.clearRect(0,0,canWidth,canHight)
+    //6.2.2调用碰撞检测方法
+    momFruitCollsion()
+    //6.2.3调用大鱼小鱼碰撞
+    momBabyCollsion()
     //6.3监听画布
     fruitMonitor();
     //6.4绘制大鱼
     mom.draw();
-
-
-
-
+    //6.5绘制小鱼
+    baby.draw()
+    
     //6.6绘制海葵
     ane.draw();
     //6.7绘制食物
@@ -86,6 +94,7 @@ function gameloop(){
 }
 //7页面加载成功后调用    game
 document.body.onload = game;
+
 function onMouseMove(e){
     if(e.offsetX || e.layerX){
         mx = e.offsetX ==undefined ? e.layerX : e.offsetX;

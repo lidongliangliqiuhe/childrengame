@@ -64,21 +64,24 @@ momObj.prototype.draw = function(){
     //让大鱼面向鼠标 慢慢游动过去
     this.x=lerpDistance(mx,this.x,0.98);
     this.y=lerpDistance(my,this.y,0.99);
+
     //修改角度
     //计算鼠标大鱼的位置差
     //鼠标与大鱼之间的角度差
     //大鱼新的角度
     var deltaX=mx-this.x;
     var deltaY=my-this.y;
-    var beta = Math.atan2(deltaY,deltaX); //计算角度
-    this.angle=lerpAngle(beta,this.angle,0.92);
+    var beta = Math.atan2(deltaY,deltaX) //计算角度
+    this.angle=lerpAngle(beta,this.angle,0.92)
     ctx1.save();
     ctx1.translate(this.x,this.y);//平移原点
+    
     ctx1.rotate(this.angle+Math.PI);                  //旋转角度
     ctx1.drawImage(this.bigBody[this.bigBodyIndex],-this.bigBody[this.bigBodyIndex].width*0.5,-this.bigBody[this.bigBodyIndex].height*0.5)//大鱼的身体
     ctx1.drawImage(this.bigTail[this.bigTailIndex],-this.bigTail[this.bigTailIndex].width*0.5+30,-this.bigTail[this.bigTailIndex].height*0.5)//绘制大鱼的尾巴
     ctx1.drawImage(this.bigEye[this.bigEyeIndex],-this.bigEye[this.bigEyeIndex].width*0.5,-this.bigEye[this.bigEyeIndex].height*0.5)
     ctx1.restore();
+
 }
 //4 将mom。js添加到index。html
 //5 在main.js创建大鱼对象 并且调用响应方法
